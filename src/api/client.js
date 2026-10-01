@@ -6,7 +6,7 @@ import axios from 'axios';
  * The proxy in vite.config.js will forward /api requests to localhost:8000
  */
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL: import.meta.env.VITE_API_URL || 'https://panisudar-job-portal.vercel.app/api',
   headers: {
     'Content-Type': 'application/json',
   },
