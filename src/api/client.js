@@ -6,7 +6,7 @@ import axios from 'axios';
  * The proxy in vite.config.js will forward /api requests to localhost:8000
  */
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'https://panisudar-job-portal.vercel.app/api',
+  baseURL: import.meta.env.VITE_API_URL || 'https://panisudar.onrender.com/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -42,7 +42,7 @@ client.interceptors.response.use(
       const refresh = localStorage.getItem('refresh_token');
       if (refresh) {
         try {
-          const res = await axios.post('/api/auth/token/refresh/', { refresh });
+          const res = await axios.post('${import.meta.env.VITE_API_URL}/api/auth/token/refresh/', { refresh });
           const newAccess = res.data.access;
           localStorage.setItem('access_token', newAccess);
           originalRequest.headers.Authorization = `Bearer ${newAccess}`;
